@@ -21,7 +21,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: petone
+    container_name: fmh
     environment:
       POSTGRESQL_HOST: db
       POSTGRESQL_PORT: 5432
