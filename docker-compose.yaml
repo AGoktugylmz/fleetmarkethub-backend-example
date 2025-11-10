@@ -1,0 +1,80 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:14.2-alpine
+    container_name: fmh-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: fmh
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./var/logs/postgresql:/var/log/postgresql
+    ports:
+      - "5432:5432"
+    networks:
+      - fmh
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: petone
+    environment:
+      POSTGRESQL_HOST: db
+      POSTGRESQL_PORT: 5432
+      POSTGRESQL_DB: fmh
+      POSTGRESQL_SCHEMA: public
+      POSTGRESQL_USERNAME: postgres
+      POSTGRESQL_PASSWORD: secret
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: secret
+      DB_DDL_AUTO: update
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - redis
+    #restart: always
+    networks:
+      - fmh
+    volumes:
+      - ./var/storage:/var/storage
+
+  redis:
+    image: redis:7.0.5-alpine
+    container_name: fmh-redis
+    restart: always
+    command: redis-server --save 20 1 --loglevel warning --requirepass secret
+    volumes:
+      - redis-data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - fmh
+  redis-commander:
+    image: rediscommander/redis-commander:redis-commander-210
+    restart: always
+    container_name: redis-commander
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      #REDIS_USERNAME: default
+      REDIS_PASSWORD: secret
+      HTTP_USER: admin
+      HTTP_PASSWORD: secret
+    ports:
+      - "6380:8081"
+    networks:
+      - fmh
+
+volumes:
+  db-data:
+  rabbitmq-data:
+  redis-data:
+
+networks:
+  fmh:

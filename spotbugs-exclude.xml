@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <Match>
+        <Bug pattern="EI_EXPOSE_REP"/>
+    </Match>
+    <Match>
+        <Bug pattern="EI_EXPOSE_REP2"/>
+    </Match>
+    <Match>
+        <Bug pattern="BC_EQUALS_METHOD_SHOULD_WORK_FOR_ALL_OBJECTS"/>
+    </Match>
+    <Match>
+        <Bug pattern="SE_BAD_FIELD"/>
+    </Match>
+    <Match>
+        <Class name="~.*CipherUtil$"/>
+        <Bug pattern="DM_DEFAULT_ENCODING"/>
+    </Match>
+    <Match>
+        <Class name="com.cosmosboard.fmh.service.AutoCheckService"/>
+        <Bug pattern="DM_DEFAULT_ENCODING"/>
+    </Match>
+    <Match>
+        <Class name="com.cosmosboard.fmh.Seeder"/>
+        <Bug pattern="DLS_DEAD_LOCAL_STORE"/>
+    </Match>
+    <Match>
+        <Class name="com.cosmosboard.fmh.service.AutoCheckService"/>
+        <Bug pattern="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE"/>
+    </Match>
+    <Match>
+        <Class name="com.cosmosboard.fmh.service.StripeService"/>
+        <Method name="init"/>
+        <Bug pattern="ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD"/>
+    </Match>
+    <Match>
+        <Class name="com.cosmosboard.fmh.service.CarService"/>
+        <Method name="exportCarsToExcel"/>
+        <Bug pattern="BX_UNBOXED_AND_COERCED_FOR_TERNARY_OPERATOR"/>
+    </Match>
+</FindBugsFilter>

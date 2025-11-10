@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD SuppressionFilter Configuration 1.0//EN"
+        "https://checkstyle.org/dtds/suppressions_1_0.dtd">
+
+<suppressions>
+    <suppress files="com.cosmosboard.fmh.MainApplication" checks="."/>
+    <suppress files="com.cosmosboard.fmh.Seeder" checks="."/>
+    <suppress files="com.cosmosboard.fmh.controller.CarController" checks="ParameterNumber"/>
+    <suppress files="com.cosmosboard.fmh.controller.CarController" checks="LambdaBodyLength"/>
+    <suppress files="com.cosmosboard.fmh.controller.OutsourceController" checks="ParameterNumber"/>
+    <suppress files="com.cosmosboard.fmh.controller.OutsourceController" checks="LambdaBodyLength"/>
+    <suppress files="com.cosmosboard.fmh.controller.RetailCarController" checks="ParameterNumber"/>
+    <suppress files="com.cosmosboard.fmh.controller.RetailCarController" checks="LambdaBodyLength"/>
+    <suppress files="com.cosmosboard.fmh.controller.admin.CarController" checks="ParameterNumber"/>
+    <suppress files="com.cosmosboard.fmh.controller.admin.CarController" checks="LambdaBodyLength"/>
+    <suppress files="com.cosmosboard.fmh.controller.admin.UserController" checks="ParameterNumber"/>
+    <suppress files="com.cosmosboard.fmh.controller.UserController" checks="ParameterNumber"/>
+    <suppress files="com.cosmosboard.fmh.dto.validator.TcValidator" checks="MagicNumber"/>
+    <suppress files="com.cosmosboard.fmh.service.UserService" checks="CyclomaticComplexity"/>
+    <suppress files="com.cosmosboard.fmh.security.UrlHelperService" checks="LambdaBodyLength"/>
+    <suppress files="com.cosmosboard.fmh.entity.specification.OfferFilterSpecification" checks="MethodLength"/>
+    <suppress files="com.cosmosboard.fmh.service.UserService" checks="JavaNCSS"/>
+    <suppress files="com.cosmosboard.fmh.entity.specification.CarFilterSpecification" checks="JavaNCSS"/>
+    <suppress files="com.cosmosboard.fmh.entity.specification.CarFilterSpecification" checks="CyclomaticComplexity"/>
+    <suppress files="com.cosmosboard.fmh.service.CarService" checks="MagicNumber"/>
+    <suppress files="com.cosmosboard.fmh.service.CarService" checks="MultipleStringLiterals"/>
+    <suppress files="com.cosmosboard.fmh.service.CarService" checks="JavaNCSS"/>
+    <suppress files="com.cosmosboard.fmh.service.CarService" checks="LambdaBodyLength"/>
+    <suppress files="com.cosmosboard.fmh.service.StripeService" checks="JavaNCSS"/>
+    <suppress files="com.cosmosboard.fmh.service.StripeService" checks="LambdaBodyLength"/>
+    <suppress files="com.cosmosboard.fmh.scheduler.MarketValueScheduler" checks="LambdaBodyLength"/>
+    <suppress files="com.cosmosboard.fmh.service.CarService" checks="CyclomaticComplexity"/>
+    <suppress files="com.cosmosboard.fmh.controller.CarController" checks="JavaNCSS"/>
+</suppressions>

@@ -1,0 +1,6057 @@
+{
+	"info": {
+		"_postman_id": "ec654cde-ced0-4dcb-a5bf-a17ff73cce71",
+		"name": "FleetMarketHub",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21956043"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Delete apileri",
+							"item": [
+								{
+									"name": "Delete NOTİFİCATİON",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{base}}/admin/users/notifications",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"users",
+												"notifications"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete REquest",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{base}}/admin/users/request",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"users",
+												"request"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Message Delete",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{base}}/admin/users/messages/528f336d-e42c-4ed7-8e5f-b94074098d80",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"users",
+												"messages",
+												"528f336d-e42c-4ed7-8e5f-b94074098d80"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "List",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = JSON.parse(responseBody);",
+											"if (response.items.length > 0) {",
+											"    pm.collectionVariables.set(\"selected_user_id\", response.items[0].id);",
+											"}",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/admin/users",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"users"
+									],
+									"query": [
+										{
+											"key": "roles",
+											"value": "USER,ADMIN,CONSULTANT",
+											"disabled": true
+										},
+										{
+											"key": "genders",
+											"value": "MALE,FEMALE",
+											"disabled": true
+										},
+										{
+											"key": "birthDateStart",
+											"value": "1983-11-16",
+											"disabled": true
+										},
+										{
+											"key": "birthDateEnd",
+											"value": "1983-11-16",
+											"disabled": true
+										},
+										{
+											"key": "createdAtEnd",
+											"value": "2022-10-01T23:48",
+											"disabled": true
+										},
+										{
+											"key": "createdAtStart",
+											"value": "2022-10-01T23:46",
+											"disabled": true
+										},
+										{
+											"key": "isEmailActivated",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "isBlocked",
+											"value": "false",
+											"disabled": true
+										},
+										{
+											"key": "isAvatar",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "q",
+											"value": "e",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "10",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "email",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "asc",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const locationParts = pm.response.headers.get('Location').split('/');",
+											"pm.collectionVariables.set(\"last_created_user_id\", locationParts[locationParts.length - 1]);",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"roger.z@fcaus.org\",\n    \"password\": \"Fca@2025\",\n    \"passwordConfirm\": \"Fca@2025\",\n    \"title\": \"Dr.\",\n    \"companyName\": \"FCA US\",\n    \"name\": \"Roge\",\n    \"lastName\": \"Zakharia\",\n    \"isEmailActivated\": true,\n    \"isBlocked\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/admin/users",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/admin/users/1504ef82-1dc0-4138-92a3-09437f4f4e87",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"users",
+										"1504ef82-1dc0-4138-92a3-09437f4f4e87"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"roles\": [\"USER\"],\n    \"email\": \"user@example.com\",\n    \"password\": \"Secret1.\",\n    \"passwordConfirm\": \"Secret1.\",\n    \"title\": \"Dr.\",\n    \"name\": \"John\",\n    \"lastName\": \"DOE\",\n    \"gender\": \"MALE\",\n    \"birthDate\": \"1983-11-16\",\n    \"isEmailActivated\": true,\n    \"isGsmActivated\": true,\n    \"isBlocked\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/admin/users/3ef04f98-36fb-4bfb-86d4-55273aeaf142",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"users",
+										"3ef04f98-36fb-4bfb-86d4-55273aeaf142"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Avatar",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/Users/mews/Downloads/avatar.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base}}/admin/users/{{last_created_user_id}}",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"users",
+										"{{last_created_user_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete avatar",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/admin/users/{{last_created_user_id}}/avatar",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"users",
+										"{{last_created_user_id}}",
+										"avatar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Resend activation e-mail",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/admin/users/{{last_created_user_id}}/resend-activation",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"users",
+										"{{last_created_user_id}}",
+										"resend-activation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/admin/users/528f336d-e42c-4ed7-8e5f-b94074098d80",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"users",
+										"528f336d-e42c-4ed7-8e5f-b94074098d80"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cities",
+					"item": [
+						{
+							"name": "List",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"selected_city_id\", response.items[0].id);",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{base}}/admin/cities",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"cities"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "Ad",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "20",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "name",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "asc",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const locationParts = pm.response.headers.get('Location').split('/');",
+											"pm.collectionVariables.set(\"selected_city_id\", locationParts[locationParts.length - 1]);",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"mersin\",\n    \"code\": \"33\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/admin/cities",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"cities"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/admin/cities/{{selected_city_id}}",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"cities",
+										"{{selected_city_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"ADANA\",\n    \"code\": \"01\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/admin/cities/{{selected_city_id}}",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"cities",
+										"{{selected_city_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/admin/cities/{{selected_city_id}}",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"cities",
+										"{{selected_city_id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "undefined",
+								"type": "any"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Districts",
+					"item": [
+						{
+							"name": "List",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = JSON.parse(responseBody);",
+											"if (response.items.length > 0) {",
+											"    pm.collectionVariables.set(\"selected_district_id\", response.items[0].id);",
+											"}",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{base}}/admin/districts?q=alabama",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"districts"
+									],
+									"query": [
+										{
+											"key": "cityId",
+											"value": "58333939-4e41-4c2c-9deb-26a34e5bf3f5",
+											"disabled": true
+										},
+										{
+											"key": "q",
+											"value": "alabama"
+										},
+										{
+											"key": "size",
+											"value": "20",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "name",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "asc",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const locationParts = pm.response.headers.get('Location').split('/');",
+											"pm.collectionVariables.set(\"selected_district_id\", locationParts[locationParts.length - 1]);",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"cityId\": \"b3295bbc-6973-47ca-8d6b-a40f09897289\",\n    \"name\": \"deneme\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/admin/districts",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"districts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/admin/districts/{{selected_district_id}}",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"districts",
+										"{{selected_district_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"cityId\": \"{{selected_city_id}}\",\n    \"name\": \"NEW DISTRICT\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/admin/districts/{{selected_district_id}}",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"districts",
+										"{{selected_district_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/admin/districts/{{selected_district_id}}",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"districts",
+										"{{selected_district_id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Categories",
+					"item": [
+						{
+							"name": "List",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"selected_category_id\", response.items[0].id);",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{base}}/admin/categories",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"categories"
+									],
+									"query": [
+										{
+											"key": "isActive",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "q",
+											"value": "en",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "20",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "name",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "asc",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sort - Up",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{base}}/admin/categories/{{selected_category_id}}/up",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"categories",
+										"{{selected_category_id}}",
+										"up"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sort - Down",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{base}}/admin/categories/{{selected_category_id}}/down",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"categories",
+										"{{selected_category_id}}",
+										"down"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const locationParts = pm.response.headers.get('Location').split('/');",
+											"pm.collectionVariables.set(\"selected_category_id\", locationParts[locationParts.length - 1]);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"New Category\",\n    \"description\": \"Lorem ipsum\",\n    \"content\": \"Lorem Ipsum dolor sit amet etc.\",\n    \"isActive\": true\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/admin/categories",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/admin/categories/{{selected_category_id}}",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"categories",
+										"{{selected_category_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"New Category\",\n    \"description\": \"Lorem ipsum\",\n    \"isActive\": true\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/admin/categories/{{selected_category_id}}",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"categories",
+										"{{selected_category_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/admin/categories/d0f564b3-c307-4825-9e6c-7619de9b329b",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"categories",
+										"d0f564b3-c307-4825-9e6c-7619de9b329b"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Company",
+					"item": [
+						{
+							"name": "OutSourceToken",
+							"item": [
+								{
+									"name": "Create OutServiceToken",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"name\": \"Update token\",\r\n  \"permissions\": [\"CAR_UPDATE\"]\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base}}/admin/companies/261fec0a-2940-4aee-be06-2242f616e772/outsource-tokens",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"companies",
+												"261fec0a-2940-4aee-be06-2242f616e772",
+												"outsource-tokens"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "List OutServiceToken",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "{{base}}/admin/companies/261fec0a-2940-4aee-be06-2242f616e772/outsource-tokens",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"companies",
+												"261fec0a-2940-4aee-be06-2242f616e772",
+												"outsource-tokens"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "List",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = JSON.parse(responseBody);",
+											"if (response.items.length > 0) {",
+											"    pm.collectionVariables.set(\"selected_demand_id\", response.items[0].id);",
+											"}",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{base}}/admin/companies",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"companies"
+									],
+									"query": [
+										{
+											"key": "employees",
+											"value": "f6317dcc-2811-455f-aeae-5ad94236c3aa",
+											"disabled": true
+										},
+										{
+											"key": "q",
+											"value": "lorem",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "20",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "createdAt",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "desc",
+											"disabled": true
+										},
+										{
+											"key": "categoryId",
+											"value": "d0f564b3-c307-4825-9e6c-7619de9b329b",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/admin/companies/{{selected_company_id}}",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"companies",
+										"{{selected_company_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/admin/companies/afe85c3b-e1dc-42db-a37c-c9d968f30a84",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"companies",
+										"afe85c3b-e1dc-42db-a37c-c9d968f30a84"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update status",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"WAITING\",\r\n    \"fmsCompanyId\": \"Nulable True\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/admin/companies/status/fb93cf95-810d-445a-b4d1-9f76e81bbc9f",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"companies",
+										"status",
+										"fb93cf95-810d-445a-b4d1-9f76e81bbc9f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"NewFleet\",\r\n    \"description\": \"Yeni Dünya\",\r\n    \"categoryId\" : 11111\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/admin/companies/fb93cf95-810d-445a-b4d1-9f76e81bbc9f",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"companies",
+										"fb93cf95-810d-445a-b4d1-9f76e81bbc9f"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Car",
+					"item": [
+						{
+							"name": "CarBrand",
+							"item": [
+								{
+									"name": "List",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base}}/admin/brand",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"brand"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Created",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"TOYOTA\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base}}/admin/brand",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"brand"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update",
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"BMW X8\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base}}/admin/brand/9bfb059d-c8bb-4104-be6e-a30be66461ae",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"brand",
+												"9bfb059d-c8bb-4104-be6e-a30be66461ae"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Deleted",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{base}}/admin/brand/9bfb059d-c8bb-4104-be6e-a30be66461ae",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"brand",
+												"9bfb059d-c8bb-4104-be6e-a30be66461ae"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "CarClass",
+							"item": [
+								{
+									"name": "List",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base}}/admin/class",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"class"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Created",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"ABC class\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base}}/admin/class",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"class"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update",
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"BMW X8\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base}}/admin/class/9bfb059d-c8bb-4104-be6e-a30be66461ae",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"class",
+												"9bfb059d-c8bb-4104-be6e-a30be66461ae"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Deleted",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{base}}/admin/class/9bfb059d-c8bb-4104-be6e-a30be66461ae",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"class",
+												"9bfb059d-c8bb-4104-be6e-a30be66461ae"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "CarGroup",
+							"item": [
+								{
+									"name": "List",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base}}/admin/group",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"group"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Cretated",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"D Segment\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base}}/admin/group",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"group"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update",
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"A Segment\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base}}/admin/group/daa4183a-c24c-45d2-80e5-1c984c15000c",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"group",
+												"daa4183a-c24c-45d2-80e5-1c984c15000c"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{base}}/admin/group/daa4183a-c24c-45d2-80e5-1c984c15000c",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"group",
+												"daa4183a-c24c-45d2-80e5-1c984c15000c"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "CarModel",
+							"item": [
+								{
+									"name": "list",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base}}/admin/model",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"model"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Cretated",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"brand_id\": \"00e9abe3-885b-4283-a9fd-654a3b23ed66\",\r\n    \"name\": \"İ 7\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base}}/admin/model",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"model"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\":\"mercedes\",\r\n    \"brand_id\": \"0cfaf2a2-d012-41c1-bc72-da12283d42ca\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base}}/admin/model",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"model"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\":\"ford\",\r\n    \"brand_id\":\"0cfaf2a2-d012-41c1-bc72-da12283d42ca\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base}}/admin/model",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"model"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "CarTrim",
+							"item": [
+								{
+									"name": "list",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base}}/admin/trim",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"trim"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\":\"Suv 2.0\",\r\n    \"model_id\":\"6b85e288-9bc1-43f7-873b-61d17d1e40b2\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base}}/admin/trim",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"trim"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\":\"Ford\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base}}/admin/trim/98e0d837-5b13-4968-bcd4-32d170872c4d",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"trim",
+												"98e0d837-5b13-4968-bcd4-32d170872c4d"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Deleted",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{base}}/admin/trim/98e0d837-5b13-4968-bcd4-32d170872c4d",
+											"host": [
+												"{{base}}"
+											],
+											"path": [
+												"admin",
+												"trim",
+												"98e0d837-5b13-4968-bcd4-32d170872c4d"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/admin/cars",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"cars"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/admin/cars/00d10996-d715-4389-8a7d-9c26f9825f8e",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"cars",
+										"00d10996-d715-4389-8a7d-9c26f9825f8e"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Status Update",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"WAITING\",\r\n    \"statusMessage\" : \"Yeni değişiklik\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/admin/cars/00d10996-d715-4389-8a7d-9c26f9825f8e/confirmation",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"cars",
+										"00d10996-d715-4389-8a7d-9c26f9825f8e",
+										"confirmation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"WAITING\",\r\n    \"statusMessage\" : \"Yeni değişiklik\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/admin/cars/00d10996-d715-4389-8a7d-9c26f9825f8e",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"cars",
+										"00d10996-d715-4389-8a7d-9c26f9825f8e"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Honda Civic 1.6 i-VTEC\",\r\n  \"content\": \"Well-maintained Honda Civic with low mileage, leather seats, sunroof, and Bluetooth.\",\r\n  \"unit\": \"piece\",\r\n  \"exteriorColor\": \"red\",\r\n  \"interiorColor\": \"white\",\r\n  \"reportLink\": \"https://www.lorem.com/report/12345\",\r\n  \"mileage\": 120000,\r\n  \"mmr\": 9500.75,\r\n  \"equipment\": \"Leather seats, Sunroof, Bluetooth\",\r\n  \"condition\": 4.3,\r\n  \"defaultMarketValue\": 9000.0,\r\n  \"retailMarketValue\": 11000.0,\r\n  \"locationId\": \"f49877c3-bea9-4b7b-8028-6054eee2f357\",\r\n  \"carGroupId\": \"3eae03cf-0a78-4c0a-bcc1-9083e0219c0e\",\r\n  \"carClassId\": \"7b9e3c33-69c4-42a1-bdf5-6439f1c91212\",\r\n  \"mmrShow\": true,\r\n  \"regionType\": \"NA\",\r\n  \"blackBookCondition\": \"EXCELLENT\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/admin/cars/00d10996-d715-4389-8a7d-9c26f9825f8e",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"cars",
+										"00d10996-d715-4389-8a7d-9c26f9825f8e"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Category",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"halli\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/admin/categories",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"halli\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/admin/categories/14d28fb8-101e-427d-ac85-a1ae8b7e47e8",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"categories",
+										"14d28fb8-101e-427d-ac85-a1ae8b7e47e8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/admin/categories",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"deneme\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8086/v1/admin/categories/65821f00-7082-4d6a-b6dd-c6e518d27744",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8086",
+									"path": [
+										"v1",
+										"admin",
+										"categories",
+										"65821f00-7082-4d6a-b6dd-c6e518d27744"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Offer",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/admin/offers",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"offers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleted",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/admin/offers/{{id}}",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"offers",
+										"{{id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Version",
+					"item": [
+						{
+							"name": "Update",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "version",
+											"value": "1.1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base}}/admin/version/update",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"version",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/admin/version/show",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"version",
+										"show"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Subscription",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"companyId\": \"261fec0a-2940-4aee-be06-2242f616e772\",\r\n    \"blackBookCredit\": 800,\r\n    \"endDate\": \"2025-12-30\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/admin/subscription/manual",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"subscription",
+										"manual"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/admin/dashboard",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"admin",
+								"dashboard"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/admin/dashboard/restart",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"admin",
+								"dashboard",
+								"restart"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login - Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = JSON.parse(responseBody)",
+									"pm.collectionVariables.set(\"token\", response.token)",
+									"pm.collectionVariables.set(\"refres_token\", response.refreshToken)",
+									"",
+									"pm.globals.set(\"user2Id\", response.user.id)",
+									"pm.globals.set(\"token2Global\", response.token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@example.com\",\n    \"password\": \"Secret1.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/auth/login",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login - User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = JSON.parse(responseBody)",
+									"pm.collectionVariables.set(\"token\", response.token)",
+									"pm.collectionVariables.set(\"refres_token\", response.refreshToken)",
+									"",
+									"pm.globals.set(\"user2Id\", response.user.id)",
+									"pm.globals.set(\"token2Global\", response.token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"cem.aytac@cosmosboard.com\",\n    \"password\": \"Cem@123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/auth/login",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login - advantage",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = JSON.parse(responseBody)",
+									"pm.collectionVariables.set(\"token\", response.token)",
+									"pm.collectionVariables.set(\"refres_token\", response.refreshToken)",
+									"",
+									"pm.globals.set(\"user2Id\", response.user.id)",
+									"pm.globals.set(\"token2Global\", response.token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"spuentes@advantage.com\",\n    \"password\": \"SPadvantage@25\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/auth/login",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login - User goktug",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = JSON.parse(responseBody)",
+									"pm.collectionVariables.set(\"token\", response.token)",
+									"pm.collectionVariables.set(\"refres_token\", response.refreshToken)",
+									"",
+									"pm.globals.set(\"user2Id\", response.user.id)",
+									"pm.globals.set(\"token2Global\", response.token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"gktgyilmaz@gmail.com\",\n    \"password\": \"Secret1.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/auth/login",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login - User Roger",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = JSON.parse(responseBody)",
+									"pm.collectionVariables.set(\"token\", response.token)",
+									"pm.collectionVariables.set(\"refres_token\", response.refreshToken)",
+									"",
+									"pm.globals.set(\"user2Id\", response.user.id)",
+									"pm.globals.set(\"token2Global\", response.token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"roger.z@fcaus.org\",\n    \"password\": \"Rogerfoxy@02\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/auth/login",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"token\", response.token);",
+									"pm.collectionVariables.set(\"refres_token\", response.refreshToken);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"{{refres_token}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/auth/refresh",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"gktgyilmaz@gmail.com\",\r\n    \"password\": \"Secret1.\",\r\n    \"passwordConfirm\": \"Secret1.\",\r\n    \"companyName\": \"Waruma\",\r\n    \"name\": \"Goktug\",\r\n    \"lastName\": \"YILMAZ\",\r\n    \"categoryId\":\"67a7f103-2383-40b0-850c-f45c4cdc728e\",\r\n    \"companyRetail\" : \"false\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/auth/register",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resend activation e-mail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/auth/resend-email-activation/:email",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"resend-email-activation",
+								":email"
+							],
+							"variable": [
+								{
+									"key": "email",
+									"value": "loremMoriah.Nolan3@hotmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resend activation gsm",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/auth/resend-gsm-activation/:email/:gsm",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"resend-gsm-activation",
+								":email",
+								":gsm"
+							],
+							"variable": [
+								{
+									"key": "email",
+									"value": "loremMoriah.Nolan3@hotmail.com"
+								},
+								{
+									"key": "gsm",
+									"value": "11223344556"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate - E-mail",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/auth/activate-email/W2RnsPVGDyvmrH6wlkkwExhKqQ7Y6fktaRg4QcTbC7V4pL1IUkAOUwqYeyEyMRWk",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"activate-email",
+								"W2RnsPVGDyvmrH6wlkkwExhKqQ7Y6fktaRg4QcTbC7V4pL1IUkAOUwqYeyEyMRWk"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate - Gsm",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/auth/activate-gsm/:gsmToken/:userid",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"activate-gsm",
+								":gsmToken",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "gsmToken",
+									"value": "192661"
+								},
+								{
+									"key": "userid",
+									"value": "10b941eb-3404-493e-91e0-1f19af239dce"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/auth/reset-password/gktgyilmaz@gmail.com",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"reset-password",
+								"gktgyilmaz@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "contact-us",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = JSON.parse(responseBody)",
+									"pm.collectionVariables.set(\"token\", response.token)",
+									"pm.collectionVariables.set(\"refres_token\", response.refreshToken)",
+									"",
+									"pm.globals.set(\"user2Id\", response.user.id)",
+									"pm.globals.set(\"token2Global\", response.token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"goktug yilmaz\",\n    \"emailAddress\": \"waruma@gmail.com\",\n    \"phone\" : \"0522121\",\n    \"message\": \"naber nasılsın adnasişad asldöa döasşldm asdöı ıı aısdjn ajkm\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/auth/contact-us",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"contact-us"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"loremMoriah.Nolan3@hotmail.com\",\n    \"password\": \"Secret2.\",\n    \"passwordConfirmation\": \"Secret2.\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/auth/change-password/{{token}}",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"auth",
+								"change-password",
+								"{{token}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "Me",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/account/me",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"account",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"lorem@yahoo.com\",\r\n    \"gsm\": \"+905321234567\",\r\n    \"title\": \"title\",\r\n    \"name\": \"John\",\r\n    \"lastName\": \"Doe\",\r\n    \"oldPassword\": \"Secret1.\",\r\n    \"password\": \"Secret1.\",\r\n    \"passwordConfirm\": \"Secret1.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/account/profile",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"account",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"oldPassword\": \"Secret1..\",\n    \"password\": \"Secret1.\",\n    \"passwordConfirm\": \"Secret1.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/account/password",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"account",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update e-mail",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"Secret1.\",\n    \"email\": \"admin1@example.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/account/email",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"account",
+								"email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Avatar",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/Goktug/Desktop/Göktuğ/IMG_20181007_193119_792.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base}}/account/avatar",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"account",
+								"avatar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Gsm",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"Secret1.\",\n    \"gsm\": \"+905320000000\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/account/gsm",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"account",
+								"gsm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate e-mail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"BPDgbSaHKml2WO1Qe8ZCw4zRwjhYJUe42KrBlrIiCoq4OoEuaW68L3lEhFN5mujV\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/account/activate-gsm",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"account",
+								"activate-gsm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resend Gsm Activation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/account/resend-gsm-activation",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"account",
+								"resend-gsm-activation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate Gsm",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": 108949\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/account/activate-gsm",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"account",
+								"activate-gsm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete ME",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/account/delete",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"account",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete file",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/account/:type",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"account",
+								":type"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "graduation",
+									"disabled": true
+								},
+								{
+									"key": null,
+									"value": "avatar",
+									"disabled": true
+								},
+								{
+									"key": null,
+									"value": "criminalRecord",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "type",
+									"value": "criminalRecord"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Addresses",
+			"item": [
+				{
+					"name": "List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = JSON.parse(responseBody);",
+									"if (response.items.length > 0) {",
+									"    pm.collectionVariables.set(\"selected_address_id\", response.items[0].id);",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base}}/addresses",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"addresses"
+							],
+							"query": [
+								{
+									"key": "cityId",
+									"value": "{{selected_city_id}}",
+									"disabled": true
+								},
+								{
+									"key": "districtId",
+									"value": "{{selected_district_id}}",
+									"disabled": true
+								},
+								{
+									"key": "q",
+									"value": "home",
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": "20",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "name",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "desc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 201) {",
+									"    const locationParts = pm.response.headers.get('Location').split('/');",
+									"    pm.collectionVariables.set(\"selected_address_id\", locationParts[locationParts.length - 1]);",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Home\",\n    \"cityId\": \"{{selected_city_id}}\",\n    \"districtId\": \"{{selected_district_id}}\",\n    \"address\": \"123 Main St.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/addresses",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base}}/addresses/{{selected_address_id}}",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"addresses",
+								"{{selected_address_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Home\",\n    \"cityId\": \"{{selected_city_id}}\",\n    \"districtId\": \"{{selected_district_id}}\",\n    \"address\": \"123 Main St.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/addresses/{{selected_address_id}}",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"addresses",
+								"{{selected_address_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base}}/addresses/{{selected_address_id}}",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"addresses",
+								"{{selected_address_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Car",
+			"item": [
+				{
+					"name": "Image",
+					"item": [
+						{
+							"name": "update İmage",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "avatars",
+											"type": "file",
+											"src": [
+												"/C:/Users/Goktug/Desktop/Göktuğ/Foto.PNG",
+												"/C:/Users/Goktug/Desktop/Göktuğ/IMG_20181007_193119_792.jpg"
+											]
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base}}/cars/image/e43ff3a5-96c2-406e-9e34-3ae878c041d0",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"cars",
+										"image",
+										"e43ff3a5-96c2-406e-9e34-3ae878c041d0"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List Image",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/cars/image/list/1234",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"cars",
+										"image",
+										"list",
+										"1234"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/cars/image/show/{ımageId}",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"cars",
+										"image",
+										"show",
+										"{ımageId}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete İmage",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/cars/image/{{carId}}/{ımageId}",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"cars",
+										"image",
+										"{{carId}}",
+										"{ımageId}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "List-Manheim",
+					"item": [
+						{
+							"name": "List-Brand-Manheim",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/cars/brands/2024",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"cars",
+										"brands",
+										"2024"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Manheim-Vın-sorgusu",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/cars/vin/KM8K62AB4PU026232",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"cars",
+										"vin",
+										"KM8K62AB4PU026232"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List-Model-Manheim",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/cars/models/2024/ALFA ROMEO",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"cars",
+										"models",
+										"2024",
+										"ALFA ROMEO"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List-Trim-Manheim",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/cars/trim/2024/ALFA ROMEO/GIULIA AWD 4C",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"cars",
+										"trim",
+										"2024",
+										"ALFA ROMEO",
+										"GIULIA AWD 4C"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Blackbook",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"carId\": \"3435fb9b-ae10-4450-89f3-ed2b9c72b780\",\r\n  \"state\": \"CA\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/blackbook/search",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"blackbook",
+										"search"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/blackbook/list/3435fb9b-ae10-4450-89f3-ed2b9c72b780",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"blackbook",
+										"list",
+										"3435fb9b-ae10-4450-89f3-ed2b9c72b780"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/blackbook/show/b5c93ea9-c9e5-4e1a-a969-7722ea090526",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"blackbook",
+										"show",
+										"b5c93ea9-c9e5-4e1a-a969-7722ea090526"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Retail",
+					"item": [
+						{
+							"name": "Car Show",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/retail/00d10996-d715-4389-8a7d-9c26f9825f8e",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"retail",
+										"00d10996-d715-4389-8a7d-9c26f9825f8e"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Car Groups List",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/retail/groups",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"retail",
+										"groups"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Car list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/retail",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"retail"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "companyId",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "categoryIds",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "locationIds",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "brandName",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "carGroupName",
+											"value": "Tru",
+											"disabled": true
+										},
+										{
+											"key": "statuses",
+											"value": "WAITING",
+											"description": "APPROVED, WAITING",
+											"disabled": true
+										},
+										{
+											"key": "model",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "unit",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "modelYearStart",
+											"value": "2022",
+											"disabled": true
+										},
+										{
+											"key": "modelYearEnd",
+											"value": "2025",
+											"disabled": true
+										},
+										{
+											"key": "defaultMarketValue",
+											"value": "True",
+											"disabled": true
+										},
+										{
+											"key": "retail",
+											"value": "True",
+											"disabled": true
+										},
+										{
+											"key": "priceStart",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "priceEnd",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "mileageStart",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "mileageEnd",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "exteriorColor",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "interiorColor",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "showMyFleet",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "mileage",
+											"description": "defaultMarketValue / mileage / ModelYear",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "desc",
+											"description": "asc / desc",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/cars",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"cars"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "Spectrum Auto",
+									"disabled": true
+								},
+								{
+									"key": "companyId",
+									"value": "f8aee398-382c-4381-b978-410323e2107a",
+									"disabled": true
+								},
+								{
+									"key": "categoryIds",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "locationIds",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "brandName",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "carGroupName",
+									"value": "Tru",
+									"disabled": true
+								},
+								{
+									"key": "statuses",
+									"value": "WAITING",
+									"description": "APPROVED, WAITING",
+									"disabled": true
+								},
+								{
+									"key": "model",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "unit",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "modelYearStart",
+									"value": "2022",
+									"disabled": true
+								},
+								{
+									"key": "modelYearEnd",
+									"value": "2025",
+									"disabled": true
+								},
+								{
+									"key": "defaultMarketValue",
+									"value": "True",
+									"disabled": true
+								},
+								{
+									"key": "conditionStart",
+									"value": "4.7",
+									"disabled": true
+								},
+								{
+									"key": "conditionEnd",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "retail",
+									"value": "True",
+									"disabled": true
+								},
+								{
+									"key": "priceStart",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "priceEnd",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "mileageStart",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "mileageEnd",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "exteriorColor",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "interiorColor",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "showMyFleet",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "mileage",
+									"description": "defaultMarketValue / mileage / ModelYear",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "desc",
+									"description": "asc / desc",
+									"disabled": true
+								},
+								{
+									"key": "export",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": "1000",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/cars/00d10996-d715-4389-8a7d-9c26f9825f8e",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"cars",
+								"00d10996-d715-4389-8a7d-9c26f9825f8e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListGroups",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/cars/groups",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"cars",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListClasses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/cars/groups",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"cars",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"deneme\",\r\n    \"content\":\" deneme deneme deneme\",\r\n    \"modelId\":\"c9841695-0add-4d8f-8fa6-15e8e2b34315\",\r\n    \"unit\":\"bla bla\",\r\n    \"modelYear\":2024,\r\n    \"exteriorColor\":\"blue\",\r\n    \"interiorColor\":\"red\",\r\n    \"reportLink\": \"cr report link\",\r\n    \"mileage\": \"10000\",\r\n    \"equipment\": \"sensör\",\r\n    \"condition\": \"2.5\",\r\n    \"defaultMarketValue\": 22222,\r\n    \"retailMarketValue\": 22222,\r\n    \"locationId\": \"bceff005-5442-4441-88fc-48bae2b84549\",\r\n    \"carGroupId\":\"bceff005-5442-4441-88fc-48bae2b84549\",\r\n    \"carClassId\":\"bceff005-5442-4441-88fc-48bae2b84549\",\r\n    \"regionType\" : \"NA\",\r\n    \"blackBookCondition\": \"XCLEAN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/cars/65ab1750-2647-49f9-a08f-8c644e991538",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"cars",
+								"65ab1750-2647-49f9-a08f-8c644e991538"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "StatusUpdate",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"APPROVED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/cars/1234/status",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"cars",
+								"1234",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ÇokluStatusExcel",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Goktug/Downloads/Sold.xlsx"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base}}/cars/bulk-status-update?status=REJECTED",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"cars",
+								"bulk-status-update"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "REJECTED",
+									"description": "WAITING , APPROVED, CANCELLED"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Prewiew-Tekli",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"vin\":\"KM8K62AB4PU026232\",\r\n    \"mileage\": \"10000\",\r\n    \"mmr\": \"5\",\r\n    \"condition\": \"2.5\",\r\n    \"regionType\": \"NA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/cars/preview",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"cars",
+								"preview"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tekli-Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"deneme\",\r\n    \"content\": \" deneme deneme deneme\",\r\n    \"modelName\": \"VERSA\",\r\n    \"trimName\": \"4D SEDAN SV\",\r\n    \"brandName\": \"NISSAN\",\r\n    \"vin\": \"KM8K62AB4PU026232\",\r\n    \"unit\": \"bla bla\",\r\n    \"modelYear\": 2024,\r\n    \"exteriorColor\": \"blue\",\r\n    \"interiorColor\": \"red\",\r\n    \"reportLink\": \"cr report link\",\r\n    \"mileage\": 10000,\r\n    \"mmr\": 17150,\r\n    \"equipment\": \"sensör\",\r\n    \"condition\": 2.5,\r\n    \"locationId\": \"0c482ea4-be95-4ed5-8102-005ef7321f30\",\r\n    \"carGroupId\": \"e135cc80-1b22-43fc-a200-d815cd5cfd81\",\r\n    \"carClassId\": \"076081c7-f1ad-4976-bb76-7742b5a16f69\",\r\n    \"regionType\": \"NA\",\r\n    \"blackBookCondition\" : \"XCLEAN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/cars",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"cars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Prewiew-excel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Goktug/Downloads/Araç excelleri/1.xlsx"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base}}/cars/file",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"cars",
+								"file"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Çoklu araç Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n        {\r\n            \"modelName\": \"VERSA\",\r\n            \"trimName\": \"4D SEDAN SV\",\r\n            \"brandName\": \"NISSAN\",\r\n            \"vin\": \"3N1CN8EVXRL828710\",\r\n            \"mileage\": 1231,\r\n            \"modelYear\": 2024,\r\n            \"defaultMarketValue\": 0.0,\r\n            \"condition\": 1.0,\r\n            \"locationName\": \"deneme\",\r\n            \"crLink\": null,\r\n            \"exteriorColor\": null,\r\n            \"interiorColor\": null,\r\n            \"vehicleType\": \"\",\r\n            \"equipment\": null,\r\n            \"detail\": null,\r\n            \"mmr\": 9200,\r\n            \"regionType\": \"NA\",\r\n            \"blackBookCondition\": \"XCLEAN\"\r\n        },\r\n        {\r\n            \"modelName\": \"KONA FWD\",\r\n            \"trimName\": \"4D SUV 2.0L SEL\",\r\n            \"brandName\": \"HYUNDAI\",\r\n            \"vin\": \"KM8K62AB4PU026232\",\r\n            \"mileage\": 1231,\r\n            \"modelYear\": 2023,\r\n            \"defaultMarketValue\": 0.0,\r\n            \"condition\": 1.0,\r\n            \"locationName\": \"deneme\",\r\n            \"crLink\": null,\r\n            \"exteriorColor\": null,\r\n            \"interiorColor\": null,\r\n            \"vehicleType\": null,\r\n            \"equipment\": null,\r\n            \"detail\": null,\r\n            \"mmr\": 14150,\r\n            \"regionType\": \"NA\",\r\n            \"blackBookCondition\": \"AVG\"\r\n        }\r\n    ]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/cars/upload",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"cars",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/cars/{carsİd}",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"cars",
+								"{carsİd}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Company",
+			"item": [
+				{
+					"name": "Locations",
+					"item": [
+						{
+							"name": "List",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/companies/locations",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"companies",
+										"locations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cityId\": \"c651c127-63f7-47c0-83a1-95126bcf1087\",\r\n    \"districtId\": \"46930374-b5c4-42bd-9698-fde71f81c92b\",\r\n    \"name\": \"California CosmosBoard\",\r\n    \"description\": \"TTT\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/companies/locations",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"companies",
+										"locations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cityId\": \"0f4bfc4b-ee58-4518-b1cd-3e36f097bd69\",\r\n    \"districtId\": \"850dfc8d-6e17-4acb-bee3-8c2114998ee7\",\r\n    \"name\": \"San Diego\",\r\n    \"description\": \"Locaiton Adana\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/companies/locations/5380ec1b-cc96-43fb-94ff-65655615786e",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"companies",
+										"locations",
+										"5380ec1b-cc96-43fb-94ff-65655615786e"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deleted",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cityId\": \"909a9258-6e21-440d-8540-b16b193cde30\",\r\n    \"districtId\": \"03ea748b-f4cb-45b5-bc1d-6b48ce31814e\",\r\n    \"name\": \"Adana Şubesi\",\r\n    \"description\": \"Locaiton Adana\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/companies/locations/be916441-0e6b-4e81-b23c-1740726f4ab4",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"companies",
+										"locations",
+										"be916441-0e6b-4e81-b23c-1740726f4ab4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Show My company",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/companies",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Company",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/companies/261fec0a-2940-4aee-be06-2242f616e772",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"companies",
+								"261fec0a-2940-4aee-be06-2242f616e772"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"NewFleet\",\r\n    \"description\": \"Yeni Dünya\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/companies",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update avatar",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/Goktug/Desktop/Göktuğ/IMG_20181007_193119_792.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base}}/companies/avatar",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"companies",
+								"avatar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update banner",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "banner",
+									"type": "file",
+									"src": "/C:/Users/Goktug/Desktop/Göktuğ/IMG_20181007_193119_792.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base}}/companies/banner",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"companies",
+								"banner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LİST",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = JSON.parse(responseBody);",
+									"if (response.items.length > 0) {",
+									"    pm.collectionVariables.set(\"selected_demand_id\", response.items[0].id);",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base}}/companies/list",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"companies",
+								"list"
+							],
+							"query": [
+								{
+									"key": "employees",
+									"value": "f6317dcc-2811-455f-aeae-5ad94236c3aa",
+									"disabled": true
+								},
+								{
+									"key": "q",
+									"value": "enterprises",
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": "20",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "createdAt",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "desc",
+									"disabled": true
+								},
+								{
+									"key": "categoryId",
+									"value": "d0f564b3-c307-4825-9e6c-7619de9b329b",
+									"disabled": true
+								},
+								{
+									"key": "companyId",
+									"value": "261fec0a-2940-4aee-be06-2242f616e772",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employee",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/employees",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"gktgyilmaz@gmail.com\",\r\n    \"password\":\"Secret1.\",\r\n    \"passwordConfirm\":\"Secret1.\",\r\n    \"name\": \"Goktug\",\r\n    \"lastName\": \"Yılmaz\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/employees",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"deneme\",\r\n    \"company\" : \"denem\",\r\n    \"isOwner\": \"True\",\r\n    \"offers\": {\r\n        \"deneme\" : [\"deneme\"]\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/employees/6d904f11-ac5a-4c88-8f3f-aa84854e1360",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"employees",
+								"6d904f11-ac5a-4c88-8f3f-aa84854e1360"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Home",
+			"item": [
+				{
+					"name": "listOnlyUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listOnlyAdmin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/onlyAdmin",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"onlyAdmin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listOnlyConsultant",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/onlyConsultant",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"onlyConsultant"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Offer",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/offers",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"offers"
+							],
+							"query": [
+								{
+									"key": "showMyOffer",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "q",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/offers/0df788ad-d6e4-43fd-9493-5a82f213217b",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"offers",
+								"0df788ad-d6e4-43fd-9493-5a82f213217b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\":\"yanlış offer gönderimi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/offers/0df788ad-d6e4-43fd-9493-5a82f213217b",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"offers",
+								"0df788ad-d6e4-43fd-9493-5a82f213217b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Status-Change",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\":\"ACCEPTED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/offers/3ea3e2f5-7e7d-4e09-88e1-78f1ce5b00c9",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"offers",
+								"3ea3e2f5-7e7d-4e09-88e1-78f1ce5b00c9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"carId\":\"c3f08f25-c851-4097-a0a8-6e550339f5a9\",\r\n    \"price\" : 22222\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/offers",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"offers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Çoklu Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"offers\": [\r\n    {\r\n      \"carId\": \"07bf1e17-9456-4f30-8684-40c88c740611\",\r\n      \"price\": 10000\r\n    },\r\n    {\r\n      \"carId\": \"b14b0268-80b2-4279-9c2a-c34d462647eb\",\r\n      \"price\": 15000\r\n    }\r\n     ,\r\n    {\r\n      \"carId\": \"b14b0268-80b2-4279-9c2a-c34d462647eb\",\r\n      \"price\": 22222\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/offers/bulk",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"offers",
+								"bulk"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shared",
+			"item": [
+				{
+					"name": "listCities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/shared/cities",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"shared",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MarketValues",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/shared/update-market-values/manheim",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"shared",
+								"update-market-values",
+								"manheim"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listBrand",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/shared/brands",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"shared",
+								"brands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listModels",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/shared/models",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"shared",
+								"models"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListDistricts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/shared/cities/ec1ec9f0-5414-46c0-b716-42e5b64b1b14/districts",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"shared",
+								"cities",
+								"ec1ec9f0-5414-46c0-b716-42e5b64b1b14",
+								"districts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listCategory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/shared/categories",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"shared",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ShowCategory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/shared/categories/65821f00-7082-4d6a-b6dd-c6e518d27744",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"shared",
+								"categories",
+								"65821f00-7082-4d6a-b6dd-c6e518d27744"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listEnums",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/shared/enums",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"shared",
+								"enums"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Request",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"New Car\",\r\n    \"text\": \"Bana civic lazım\",\r\n    \"companyIds\": [\r\n        \"ac276357-a16c-466d-a16a-2fe4be7eab6b\"\r\n    ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/request",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/request?showMyRequests=true",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"request"
+							],
+							"query": [
+								{
+									"key": "showMyRequests",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/request/ebc48f3b-2246-4e42-b580-0f4a5dfe565d",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"request",
+								"ebc48f3b-2246-4e42-b580-0f4a5dfe565d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/request/cae3ad96-6e65-4965-9a29-a10b0d6b536a",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"request",
+								"cae3ad96-6e65-4965-9a29-a10b0d6b536a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/users",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "favorite",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/favourite/1bca14da-d0c0-452c-aad8-36643e255809",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"favourite",
+								"1bca14da-d0c0-452c-aad8-36643e255809"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/favourite",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"favourite"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/favourite/1234",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"favourite",
+								"1234"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Messages",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"toCompanyId\" : \"fb93cf95-810d-445a-b4d1-9f76e81bbc9f\",\r\n    \"title\" : \"Araba\",\r\n    \"content\" : \"Kaça satarsın\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/message",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List-All-mesages-group",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/message",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"message"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List_bir-kişiye ait mesajlaşma",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/message/fb93cf95-810d-445a-b4d1-9f76e81bbc9f?title=Arab",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"message",
+								"fb93cf95-810d-445a-b4d1-9f76e81bbc9f"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "Arab"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/message/c92c62ec-f3d7-483c-8d16-3bb8c5653ca3/read",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"message",
+								"c92c62ec-f3d7-483c-8d16-3bb8c5653ca3",
+								"read"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MarketValue",
+			"item": [
+				{
+					"name": "LİST",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/market-value-batches",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"market-value-batches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"companyId\": \"deneme\",\r\n    \"userId\":\" deneme deneme deneme\",\r\n    \"providers\":\"VERSA\",\r\n    \"message\":\"4D SEDAN SV\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/market-value-batches",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"market-value-batches"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notifications",
+			"item": [
+				{
+					"name": "Show Notification",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/notification/7c6ae8b6-fb5d-4a48-ab50-0ce31bfbc8e3",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"notification",
+								"7c6ae8b6-fb5d-4a48-ab50-0ce31bfbc8e3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notifications",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/notification",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"notification"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"notificationIds\": [\r\n        \"123e4567-e89b-12d3-a456-426614174000\",\r\n        \"987f6543-b21a-34c5-d678-556712340001\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/notification",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"notification"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AutoCheck",
+			"item": [
+				{
+					"name": "Account",
+					"item": [
+						{
+							"name": "Create AutoCheckAcount",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"sid\": \"7006338\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/auto-check/create",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"auto-check",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Account",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/auto-check/delete",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"auto-check",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update AutoCheckAcount",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"sid\": \"7006338\",\r\n    \"pwd\": \"qhrhX7VSP\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/auto-check/update",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"auto-check",
+										"update"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "CAr",
+					"item": [
+						{
+							"name": "Car report",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/auto-check/report/3KPF54AD1RE749981/c35951b1-fa71-486f-8fa3-e92d4ef04d41",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"auto-check",
+										"report",
+										"3KPF54AD1RE749981",
+										"c35951b1-fa71-486f-8fa3-e92d4ef04d41"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "LİST Car report",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"sid\": \"7006338\",\r\n    \"pwd\": \"qhrhX7VSP\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/auto-check/report/2C3CCADG5PH624503/7b845a75-848c-4368-9d05-461476dae798",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"auto-check",
+										"report",
+										"2C3CCADG5PH624503",
+										"7b845a75-848c-4368-9d05-461476dae798"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show Car Report",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"sid\": \"7006338\",\r\n    \"pwd\": \"qhrhX7VSP\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/auto-check/report/html/56ac31e0-edef-4ce2-a5e4-69249d1cb48d",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"auto-check",
+										"report",
+										"html",
+										"56ac31e0-edef-4ce2-a5e4-69249d1cb48d"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE Report",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"sid\": \"7006338\",\r\n    \"pwd\": \"qhrhX7VSP\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/auto-check/report/html/1f83c384-a149-49d2-9c6a-d0f1e9eaa7d5",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"auto-check",
+										"report",
+										"html",
+										"1f83c384-a149-49d2-9c6a-d0f1e9eaa7d5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Subscription",
+			"item": [
+				{
+					"name": "Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/subscription",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"subscription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BlackbookCredits added",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/subscription/purchase-blackbook-credits",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"subscription",
+								"purchase-blackbook-credits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"trial\" : false,\r\n    \"blackbookAddon\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/subscription",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"subscription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"blackbookAddon\" : true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/subscription",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"subscription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/subscription",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"subscription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resume",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/subscription",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"subscription"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Outsource",
+			"item": [
+				{
+					"name": "ADD CAR",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "u7)L%n7VgXc%wf402V(Q^N3&2v+BSG^V",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n        {\r\n            \"modelName\": \"VERSA\",\r\n            \"trimName\": \"4D SEDAN SV\",\r\n            \"brandName\": \"NISSAN\",\r\n            \"vin\": \"3N1CN8EVXRL828710\",\r\n            \"mileage\": 1231,\r\n            \"modelYear\": 2024,\r\n            \"defaultMarketValue\": 0.0,\r\n            \"condition\": 1.0,\r\n            \"locationName\": \"deneme\",\r\n            \"crLink\": null,\r\n            \"exteriorColor\": null,\r\n            \"interiorColor\": null,\r\n            \"vehicleType\": \"\",\r\n            \"equipment\": null,\r\n            \"detail\": null,\r\n            \"mmr\": 9200,\r\n            \"regionType\": \"NA\",\r\n            \"blackBookCondition\": \"XCLEAN\"\r\n        },\r\n        {\r\n            \"modelName\": \"KONA FWD\",\r\n            \"trimName\": \"4D SUV 2.0L SEL\",\r\n            \"brandName\": \"HYUNDAI\",\r\n            \"vin\": \"KM8K62AB4PU026232\",\r\n            \"mileage\": 1231,\r\n            \"modelYear\": 2023,\r\n            \"defaultMarketValue\": 0.0,\r\n            \"condition\": 1.0,\r\n            \"locationName\": \"deneme\",\r\n            \"crLink\": null,\r\n            \"exteriorColor\": null,\r\n            \"interiorColor\": null,\r\n            \"vehicleType\": null,\r\n            \"equipment\": null,\r\n            \"detail\": null,\r\n            \"mmr\": 14150,\r\n            \"regionType\": \"NA\",\r\n            \"blackBookCondition\": \"AVG\"\r\n        }\r\n    ]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/outsource/upload",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"outsource",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Car list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "u7)L%n7VgXc%wf402V(Q^N3&2v+BSG^V",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base}}/outsource",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"outsource"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "companyId",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "categoryIds",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "locationIds",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "brandName",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "carGroupName",
+									"value": "Tru",
+									"disabled": true
+								},
+								{
+									"key": "statuses",
+									"value": "WAITING",
+									"description": "APPROVED, WAITING",
+									"disabled": true
+								},
+								{
+									"key": "model",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "unit",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "modelYearStart",
+									"value": "2022",
+									"disabled": true
+								},
+								{
+									"key": "modelYearEnd",
+									"value": "2025",
+									"disabled": true
+								},
+								{
+									"key": "defaultMarketValue",
+									"value": "True",
+									"disabled": true
+								},
+								{
+									"key": "retail",
+									"value": "True",
+									"disabled": true
+								},
+								{
+									"key": "priceStart",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "priceEnd",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "mileageStart",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "mileageEnd",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "exteriorColor",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "interiorColor",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "showMyFleet",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "mileage",
+									"description": "defaultMarketValue / mileage / ModelYear",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "desc",
+									"description": "asc / desc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Outsource token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/outsource/tokens",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"outsource",
+								"tokens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Status",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "boKigzna)+O^iDrPrHzt%PJAZ+ZexWIf",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n  { \"vin\": \"1HGCM82633A004352\", \"status\": \"APPROVED\" },\r\n  { \"vin\": \"3KPF54AD1RE749981\", \"status\": \"REJECTED\" },\r\n  { \"vin\": \"1HGCM82633A004354\", \"status\": \"CANCELLED\" }\r\n]\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/outsource/update/status/batch",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"outsource",
+								"update",
+								"status",
+								"batch"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transport",
+			"item": [
+				{
+					"name": "Price",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"originPostalCode\": \"33496\",\r\n  \"originState\": \"FL\",\r\n  \"destinationPostalCode\": \"06880\",\r\n  \"destinationState\": \"CT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/transport/pricing",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"transport",
+								"pricing"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base",
+			"value": "https://test-api.fleetmarkethub.com/v1",
+			"disabled": true
+		},
+		{
+			"key": "base",
+			"value": "https://api.fleetmarkethub.com/v1"
+		},
+		{
+			"key": "base",
+			"value": "http://127.0.0.1:8086/v1",
+			"disabled": true
+		},
+		{
+			"key": "last_created_user_id",
+			"value": ""
+		},
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "refres_token",
+			"value": ""
+		},
+		{
+			"key": "selected_city_id",
+			"value": ""
+		},
+		{
+			"key": "selected_district_id",
+			"value": ""
+		},
+		{
+			"key": "selected_address_id",
+			"value": ""
+		},
+		{
+			"key": "selected_category_id",
+			"value": ""
+		},
+		{
+			"key": "selected_category_slug",
+			"value": ""
+		},
+		{
+			"key": "selected_demand_id",
+			"value": ""
+		},
+		{
+			"key": "selected_user_id",
+			"value": ""
+		},
+		{
+			"key": "selected_offer_id",
+			"value": ""
+		},
+		{
+			"key": "selected_company_id",
+			"value": ""
+		},
+		{
+			"key": "selected_location_id",
+			"value": ""
+		},
+		{
+			"key": "invite_id",
+			"value": ""
+		},
+		{
+			"key": "selected_category_id2",
+			"value": ""
+		},
+		{
+			"key": "selected_category_slug2",
+			"value": ""
+		}
+	]
+}

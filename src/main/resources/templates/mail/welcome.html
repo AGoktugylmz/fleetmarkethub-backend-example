@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="mail/fragments/head :: head"></th:block>
+<body>
+<th:block th:replace="mail/fragments/preheader :: preheader"></th:block>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
+    <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+            <div class="content">
+                <table role="presentation" class="main">
+                    <tr>
+                        <td class="wrapper">
+                            <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td>
+                                        <p>Hi <span th:text="${fullName}">there</span>,</p>
+
+                                        <p>Welcome to <strong>FleetMarketHub &mdash;</strong> we&#39;re thrilled to have you with us!</p>
+
+                                        <p>Your account is now active.</p>
+
+                                        <p>We want to ensure that you have the best experience with FMH and would like to arrange an online training session at your convenience.</p>
+
+                                        <p>Please book a meeting by using the link below:</p>
+
+                                        <p style="text-align: center; margin-top: 20px;">
+                                            <a th:href="${meetingLink}"
+                                               style="background-color: #28a745;
+                                                      color: white;
+                                                      padding: 12px 24px;
+                                                      border-radius: 6px;
+                                                      text-decoration: none;
+                                                      font-weight: bold;
+                                                      display: inline-block;">
+                                                Book a Meeting
+                                            </a>
+                                        </p>
+
+                                        <p style="font-weight: bold;">&#128269; Why Fleet Market Hub?</p>
+                                        <ul>
+                                            <li><strong>Zero Commission Fees:</strong> Maximize your profits with our commission-free platform.</li>
+                                            <li><strong>Direct Negotiations:</strong> Engage directly with fleet buyers and sellers to negotiate the best deals.</li>
+                                            <li><strong>Real-Time Market Insights:</strong> Access up-to-date MMR, AutoCheck, and Black Book data for informed decision-making.</li>
+                                            <li><strong>Connect with Verified Providers:</strong> Access a network of trusted partners for transport, finance, brokerage, toll services and more.</li>
+                                        </ul>
+
+                                        <p>If you have any questions or need assistance getting started, feel free to reach out to us at
+                                            <a href="mailto:support@fleetmarkethub.com">support@fleetmarkethub.com</a>.
+                                        </p>
+
+                                        <p>Thank you for choosing FleetMarketHub. We're excited to support your fleet management journey.</p>
+
+                                        <p>Kind Regards,</p>
+
+                                        <p style="text-align: center; margin-bottom: 8px;">
+                                            <strong>Customer Support</strong><br>
+                                            <a href="https://www.fleetmarkethub.com" target="_blank" style="display: inline-block;">
+                                                <img src="https://fleetmarkethub.com/_next/static/media/logo.32775a42.png"
+                                                     alt="Fleet Market Hub Logo"
+                                                     width="150"
+                                                     loading="eager"
+                                                     draggable="false"
+                                                     style="pointer-events: none; user-select: none; margin-top: 8px;" />
+                                            </a>
+                                        </p>
+
+                                        <p style="text-align: center; margin-top: 12px;">
+                                            Email: <a href="mailto:support@fleetmarkethub.com">support@fleetmarkethub.com</a><br>
+                                            <a href="https://www.fleetmarkethub.com">www.fleetmarkethub.com</a>
+                                        </p>
+
+                                        <hr style="margin: 40px 0;">
+
+                                        <small style="color: #888;">
+                                            FMH team occasionally and voluntarily provides consulting support and recommendations to the Company’s/Person in different capacities.
+                                            It’s imperative to emphasize that it’s up to the Company/Person to consider, verify, and implement the consulting support and recommendations.
+                                            Company/Person explicitly acknowledge and indemnify FMH officers and staff from any potential issues arising from these voluntary services.
+                                            <br><br>
+                                            <strong>Confidentiality Note:</strong> This message may contain confidential information as intended only for the company or individual named as the recipient.
+                                            If you are not the named addressee you should not disseminate, distribute or copy this email.
+                                            Please notify the sender immediately by e-mail if you have received this e-mail by mistake and delete this e-mail from your system.
+                                        </small>
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <section th:replace="mail/fragments/footer :: footer"></section>
+            </div>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+</body>
+</html>

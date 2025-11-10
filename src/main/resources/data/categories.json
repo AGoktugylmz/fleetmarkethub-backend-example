@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Enjeksiyon",
+    "description": "Lorem Ipsum dolor sit amet etc.",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus, velit ac imperdiet fringilla...",
+    "isActive": true
+  },
+  {
+    "name": "Muayene",
+    "description": "Lorem Ipsum dolor sit amet etc.",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus, velit ac imperdiet fringilla...",
+    "isActive": true
+  },
+  {
+    "name": "Kontrol",
+    "description": "Lorem Ipsum dolor sit amet etc.",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus, velit ac imperdiet fringilla...",
+    "isActive": true
+  },
+  {
+    "name": "Tahlil",
+    "description": "Lorem Ipsum dolor sit amet etc.",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus, velit ac imperdiet fringilla...",
+    "isActive": true
+  },
+  {
+    "name": "Hasta Bakım",
+    "description": "Lorem Ipsum dolor sit amet etc.",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus, velit ac imperdiet fringilla...",
+    "isActive": true
+  },
+  {
+    "name": "Yaşlı Bakım",
+    "description": "Lorem Ipsum dolor sit amet etc.",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus, velit ac imperdiet fringilla...",
+    "isActive": true
+  }
+]
